@@ -5,10 +5,13 @@ Deploying a production-ready microservices e-commerce platform on Amazon EKS (El
 
 In this blog, we’ll walk through the complete setup from cloning the repository to configuring Jenkins pipelines, deploying with ArgoCD, and exposing the frontend with Route 53 + HTTPS.
 
-Step 1: Clone the GitHub Repository
+---
+## Step 1: Clone the GitHub Repository
 Open VS Code → Terminal → Run:
-
+```
 git clone https://github.com/arumullayaswanth/Microservices-E-Commerce-eks-project.git
+```
+
 Step 2: Configure AWS Keys
 aws configure
 Provide:
