@@ -11,7 +11,7 @@ Open VS Code → Terminal → Run:
 
 git clone https://github.com/arumullayaswanth/Microservices-E-Commerce-eks-project.git
 ```
----
+
 ## Step 2: Configure AWS Keys
 aws configure
 Provide:
