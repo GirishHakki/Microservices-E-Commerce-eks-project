@@ -10,7 +10,7 @@ In this blog, we’ll walk through the complete setup from cloning the repositor
 Open VS Code → Terminal → Run:
 
 git clone https://github.com/arumullayaswanth/Microservices-E-Commerce-eks-project.git
-```
+
 
 ## Step 2: Configure AWS Keys
 aws configure
@@ -22,18 +22,20 @@ Region (e.g., us-east-1)
 Output format: json
 ---
 
-Step 3: Navigate into the Project
+## Step 3: Navigate into the Project
 ls
 cd Microservices-E-Commerce-eks-project
 ls
-Step 4: Create S3 Buckets for Terraform State
+
+## Step 4: Create S3 Buckets for Terraform State
 Terraform stores state files in S3 for collaboration.
 
 cd s3-buckets/
 terraform init
 terraform plan
 terraform apply -auto-approve
-Step 5: Create Network Infrastructure
+
+## Step 5: Create Network Infrastructure
 Navigate to Terraform EC2 setup:
 
 cd ../terraform_main_ec2
@@ -48,7 +50,9 @@ region = "us-east-1"
 Check Terraform state:
 
 terraform state list
-Step 6: Connect to EC2 and Access Jenkins
+
+
+## Step 6: Connect to EC2 and Access Jenkins
 From AWS Console → EC2 → Connect → Switch to root:
 
 sudo -i
@@ -69,7 +73,8 @@ Get Jenkins admin password:
 cat /var/lib/jenkins/secrets/initialAdminPassword
 example output :
 0c39f23132004d508132ae3e0a7c70e4
-Step 7: Jenkins Setup in Browser
+
+## Step 7: Jenkins Setup in Browser
 Open:
 
 http://<EC2 Public IP>:8080
@@ -99,6 +104,8 @@ Branches to build : */master
 Script Path : eks-terraform/eks-jenkinsfile
 Apply
 Save
+
+
 6. click Build with Parameters
 
 ACTION :
@@ -108,7 +115,8 @@ To verify your EKS cluster, connect to your EC2 jumphost server and run:
 
 aws eks --region us-east-1 update-kubeconfig --name project-eks
 kubectl get nodes
-Step 11: Create a Jenkins Pipeline Job (Create Elastic Container Registry (ecr))
+
+## Step 11: Create a Jenkins Pipeline Job (Create Elastic Container Registry (ecr))
 Go to Jenkins Dashboard
 Click New Item
 Name it: ecr-terraform
@@ -143,8 +151,10 @@ loadgenerator
 currencyservice
 shippingservice
 adservice
-Step 12: Create a Jenkins Pipeline Job for Build and Push Docker Images to ECR
-🔐 Step 12.1: Add GitHub PAT to Jenkins Credentials
+
+
+## Step 12: Create a Jenkins Pipeline Job for Build and Push Docker Images to ECR
+## 🔐 Step 12.1: Add GitHub PAT to Jenkins Credentials
 Navigate to Jenkins Dashboard → Manage Jenkins → Credentials → (global) → Global credentials (unrestricted).
 Click “Add Credentials”.
 In the form:
@@ -154,8 +164,8 @@ ID: my-git-pattoken
 Description: git credentials
 4. Click “OK” to save.
 
-Step 12.2: Jenkins Pipeline Setup: Build and Push and update Docker Images to ECR
-Step 12.2.1: Jenkins Pipeline Setup: emailservice
+## Step 12.2: Jenkins Pipeline Setup: Build and Push and update Docker Images to ECR
+## Step 12.2.1: Jenkins Pipeline Setup: emailservice
 
 Go to Jenkins Dashboard
 Click New Item
@@ -172,7 +182,7 @@ Apply
 Save
 6. click Build
 
-Step 12.2.2: Jenkins Pipeline Setup: checkoutservice
+## Step 12.2.2: Jenkins Pipeline Setup: checkoutservice
 
 Go to Jenkins Dashboard
 Click New Item
@@ -189,7 +199,7 @@ Apply
 Save
 6. click Build
 
-Step 12.2.3: Jenkins Pipeline Setup: recommendationservice
+## Step 12.2.3: Jenkins Pipeline Setup: recommendationservice
 
 Go to Jenkins Dashboard
 Click New Item
@@ -206,7 +216,7 @@ Apply
 Save
 6. click Build
 
-Step 12.2.4: Jenkins Pipeline Setup: frontend
+## Step 12.2.4: Jenkins Pipeline Setup: frontend
 
 Go to Jenkins Dashboard
 Click New Item
@@ -223,7 +233,7 @@ Apply
 Save
 6. click Build
 
-Step 12.2.5: Jenkins Pipeline Setup: paymentservice
+## Step 12.2.5: Jenkins Pipeline Setup: paymentservice
 
 Go to Jenkins Dashboard
 Click New Item
@@ -240,7 +250,7 @@ Apply
 Save
 6. click Build
 
-Step 12.2.6: Jenkins Pipeline Setup: productcatalogservice
+## Step 12.2.6: Jenkins Pipeline Setup: productcatalogservice
 
 Go to Jenkins Dashboard
 Click New Item
@@ -257,7 +267,7 @@ Apply
 Save
 6. click Build
 
-Step 12.2.7: Jenkins Pipeline Setup: cartservice
+## Step 12.2.7: Jenkins Pipeline Setup: cartservice
 
 Go to Jenkins Dashboard
 Click New Item
@@ -274,7 +284,7 @@ Apply
 Save
 6. click Build
 
-Step 12.2.8: Jenkins Pipeline Setup: loadgenerator
+## Step 12.2.8: Jenkins Pipeline Setup: loadgenerator
 Go to Jenkins Dashboard
 Click New Item
 Name it: loadgenerator
@@ -290,7 +300,7 @@ Apply
 Save
 6. click Build
 
-Step 12.2.9: Jenkins Pipeline Setup: currencyservice
+## Step 12.2.9: Jenkins Pipeline Setup: currencyservice
 
 Go to Jenkins Dashboard
 Click New Item
@@ -307,7 +317,7 @@ Apply
 Save
 6. click Build
 
-Step 12.2.10: Jenkins Pipeline Setup: shippingservice
+## Step 12.2.10: Jenkins Pipeline Setup: shippingservice
 
 Go to Jenkins Dashboard
 Click New Item
@@ -324,7 +334,7 @@ Apply
 Save
 10. click Build
 
-Step 12.2.11: Jenkins Pipeline Setup: adservice
+## Step 12.2.11: Jenkins Pipeline Setup: adservice
 
 Go to Jenkins Dashboard
 Click New Item
@@ -341,7 +351,7 @@ Apply
 Save
 6. click Build
 
-🖥️ Step 13: Install ArgoCD in Jumphost EC2
+## 🖥️ Step 13: Install ArgoCD in Jumphost EC2
 13.1: Create Namespace for ArgoCD
 
 kubectl create namespace argocd
@@ -406,14 +416,16 @@ kubectl get secret argocd-initial-admin-secret -n argocd \
 Login Details:
 Username: admin
 Password: (The output of the above command)
-Step 15: Deploying with ArgoCD and Configuring Route 53 (Step-by-Step)
-Step 15.1: Create Namespace in EKS (from Jumphost EC2)
+
+## Step 15: Deploying with ArgoCD and Configuring Route 53 (Step-by-Step)
+## Step 15.1: Create Namespace in EKS (from Jumphost EC2)
 
 Run these commands on your jumphost EC2 server:
 
 kubectl create namespace dev
 kubectl get namespaces
-Step 15.2: Create New Applicatio with ArgoCD
+
+## Step 15.2: Create New Applicatio with ArgoCD
 
 Open the ArgoCD UI in your browser.
 Click + NEW APP.
@@ -428,7 +440,7 @@ Cluster URL: https://kubernetes.default.svc
 Namespace: dev
 4. Click Create.
 
-Step 17: Create a Jenkins Pipeline Job for Backend and frondend & Route 53 Setup
+## Step 17: Create a Jenkins Pipeline Job for Backend and frondend & Route 53 Setup
 Enable HTTPS for aluru.site with AWS Classic Load Balancer (CLB)
 
 This guide explains how to configure HTTPS for your domain aluru.site using AWS Classic Load Balancer (CLB), Route 53, and AWS Certificate Manager (ACM).
