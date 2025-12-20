@@ -8,11 +8,11 @@ In this blog, we’ll walk through the complete setup from cloning the repositor
 ---
 ## Step 1: Clone the GitHub Repository
 Open VS Code → Terminal → Run:
-```
+
 git clone https://github.com/arumullayaswanth/Microservices-E-Commerce-eks-project.git
 ```
-
-Step 2: Configure AWS Keys
+---
+## Step 2: Configure AWS Keys
 aws configure
 Provide:
 
@@ -20,6 +20,8 @@ Access Key ID
 Secret Access Key
 Region (e.g., us-east-1)
 Output format: json
+---
+
 Step 3: Navigate into the Project
 ls
 cd Microservices-E-Commerce-eks-project
