@@ -445,7 +445,7 @@ Enable HTTPS for aluru.site with AWS Classic Load Balancer (CLB)
 
 This guide explains how to configure HTTPS for your domain aluru.site using AWS Classic Load Balancer (CLB), Route 53, and AWS Certificate Manager (ACM).
 
-✅ Prerequisites
+## ✅ Prerequisites
 A working application (e.g., on EC2 or Kubernetes).
 A registered domain: aluru.site
 Domain is managed in Route 53 as a Public Hosted Zone.
@@ -462,7 +462,7 @@ ns-1418.awsdns-59.org
 ns-265.awsdns-73.com
 Your Classic Load Balancer is running and serving HTTP on port 80 or 8080.
 
-Step 1: Request a Public Certificate in ACM
+## Step 1: Request a Public Certificate in ACM
 Go to AWS Certificate Manager (ACM).
 Click Request Certificate.
 Choose Request a Public Certificate.
@@ -479,7 +479,7 @@ Click Create DNS record in Route 53.
 ACM will create the _acme-challenge CNAME record.
 8. Wait a few minutes until status becomes Issued.
 
-Step 2: Add HTTPS Listener to CLB
+## Step 2: Add HTTPS Listener to CLB
 Go to EC2 Console > Load Balancers.
 Select your Classic Load Balancer.
 Go to Listeners tab.
@@ -492,7 +492,7 @@ SSL Certificate: Choose the one for aluru.site
 Security Policy: Select ELBSecurityPolicy-2021–06
 5. Click Save.
 
-Step 3: Update Security Group Rules
+## Step 3: Update Security Group Rules
 Go to your EC2 or Load Balancer Security Group:
 
 Add Inbound Rule:
@@ -502,7 +502,7 @@ Port: 443
 Source: 0.0.0.0/0
 Ensure existing rules allow HTTP (port 80) or your backend port.
 
-Step 4: Configure DNS in Route 53
+## Step 4: Configure DNS in Route 53
 In ArgoCD UI, open your project application.
 Click on frontend and copy the hostname (e.g., acfb06fba08834577a50e43724d328e3-1568967602.us-east-1.elb.amazonaws.com).
 Go to Route 53 > Hosted Zones.
@@ -516,7 +516,7 @@ Region: US East (N. Virginia)
 Alias target value: Paste the frontend load balancer DNS (from step 2)
 6. Click Create Record.
 
-Step 5: Test Your Setup
+## Step 5: Test Your Setup
 Using Browser
 Visit:
 
