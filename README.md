@@ -10,7 +10,7 @@ In this blog, we’ll walk through the complete setup from cloning the repositor
 
 Open VS Code → Terminal → Run:
 
-git clone https://github.com/arumullayaswanth/Microservices-E-Commerce-eks-project.git
+git clone https://github.com/GirishHakki/Microservices-E-Commerce-eks-project.git
 
 
 ## Step 2: Configure AWS Keys
@@ -563,7 +563,7 @@ https://aluru.site
 You should see your application load securely over HTTPS.
 
 Using curl
-curl -v https://aluru.site
+curl -v https://girish.site
 Expect HTTP 200 OK or the actual page content.
 
 Troubleshooting
