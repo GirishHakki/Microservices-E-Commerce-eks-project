@@ -466,18 +466,18 @@ Namespace: dev
 ```
 ---
 ## Step 16: Create a Jenkins Pipeline Job for Backend and frondend & Route 53 Setup
-Enable HTTPS for aluru.site with AWS Classic Load Balancer (CLB)
+Enable HTTPS for girish.site with AWS Classic Load Balancer (CLB)
 
-This guide explains how to configure HTTPS for your domain aluru.site using AWS Classic Load Balancer (CLB), Route 53, and AWS Certificate Manager (ACM).
+This guide explains how to configure HTTPS for your domain girish.site using AWS Classic Load Balancer (CLB), Route 53, and AWS Certificate Manager (ACM).
 
 ## ✅ Prerequisites
 ```
 A working application (e.g., on EC2 or Kubernetes).
-A registered domain: aluru.site
+A registered domain: girish.site
 Domain is managed in Route 53 as a Public Hosted Zone.
 Go to AWS Route 53
 Create a Hosted Zone:
-Domain: aluru.site
+Domain: girish.site
 Type: Public Hosted Zone
 3. Update Hostinger Nameservers:
 
@@ -497,8 +497,8 @@ Go to AWS Certificate Manager (ACM).
 Click Request Certificate.
 Choose Request a Public Certificate.
 Enter domain:
-aluru.site
-www.aluru.site (optional)
+girish.site
+www.girish.site (optional)
 5. Choose DNS validation.
 
 Become a member
@@ -521,7 +521,7 @@ Protocol: HTTPS
 Load Balancer Port: 443
 Instance Protocol: HTTP (or HTTPS if applicable)
 Instance Port: 80 (or 8080 if your app runs there)
-SSL Certificate: Choose the one for aluru.site
+SSL Certificate: Choose the one for girish.site
 Security Policy: Select ELBSecurityPolicy-2021–06
 5. Click Save.
 ```
@@ -543,7 +543,7 @@ Ensure existing rules allow HTTP (port 80) or your backend port.
 In ArgoCD UI, open your project application.
 Click on frontend and copy the hostname (e.g., acfb06fba08834577a50e43724d328e3-1568967602.us-east-1.elb.amazonaws.com).
 Go to Route 53 > Hosted Zones.
-Select aluru.site.
+Select girish.site.
 Click Create Record:
 Record name: leave blank (for root domain)
 Record type: A — Routes traffic to an IPv4 address and AWS resource
@@ -559,7 +559,7 @@ Alias target value: Paste the frontend load balancer DNS (from step 2)
 Using Browser
 Visit:
 
-https://aluru.site
+https://girish.site
 You should see your application load securely over HTTPS.
 
 Using curl
