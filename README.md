@@ -440,12 +440,13 @@ Cluster URL: https://kubernetes.default.svc
 Namespace: dev
 4. Click Create.
 
-## Step 17: Create a Jenkins Pipeline Job for Backend and frondend & Route 53 Setup
+## Step 16: Create a Jenkins Pipeline Job for Backend and frondend & Route 53 Setup
 Enable HTTPS for aluru.site with AWS Classic Load Balancer (CLB)
 
 This guide explains how to configure HTTPS for your domain aluru.site using AWS Classic Load Balancer (CLB), Route 53, and AWS Certificate Manager (ACM).
 
 ## ✅ Prerequisites
+---
 A working application (e.g., on EC2 or Kubernetes).
 A registered domain: aluru.site
 Domain is managed in Route 53 as a Public Hosted Zone.
@@ -461,6 +462,8 @@ ns-1995.awsdns-97.co.uk
 ns-1418.awsdns-59.org
 ns-265.awsdns-73.com
 Your Classic Load Balancer is running and serving HTTP on port 80 or 8080.
+
+---
 
 ## Step 1: Request a Public Certificate in ACM
 Go to AWS Certificate Manager (ACM).
