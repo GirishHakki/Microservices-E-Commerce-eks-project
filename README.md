@@ -7,6 +7,7 @@ In this blog, we’ll walk through the complete setup from cloning the repositor
 
 ---
 ## Step 1: Clone the GitHub Repository
+
 Open VS Code → Terminal → Run:
 
 git clone https://github.com/arumullayaswanth/Microservices-E-Commerce-eks-project.git
@@ -53,6 +54,7 @@ terraform state list
 
 
 ## Step 6: Connect to EC2 and Access Jenkins
+
 From AWS Console → EC2 → Connect → Switch to root:
 
 sudo -i
@@ -465,7 +467,8 @@ Your Classic Load Balancer is running and serving HTTP on port 80 or 8080.
 
 ---
 
-## Step 1: Request a Public Certificate in ACM
+---
+## Step 1: Request a Public Certificate in ACMs
 Go to AWS Certificate Manager (ACM).
 Click Request Certificate.
 Choose Request a Public Certificate.
@@ -481,6 +484,8 @@ Become a member
 Click Create DNS record in Route 53.
 ACM will create the _acme-challenge CNAME record.
 8. Wait a few minutes until status becomes Issued.
+
+---
 
 ## Step 2: Add HTTPS Listener to CLB
 Go to EC2 Console > Load Balancers.
