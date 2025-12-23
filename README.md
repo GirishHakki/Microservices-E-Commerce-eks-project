@@ -54,7 +54,7 @@ terraform state list
 
 
 ## Step 6: Connect to EC2 and Access Jenkins
-
+```
 From AWS Console → EC2 → Connect → Switch to root:
 
 sudo -i
@@ -75,10 +75,11 @@ Get Jenkins admin password:
 cat /var/lib/jenkins/secrets/initialAdminPassword
 example output :
 0c39f23132004d508132ae3e0a7c70e4
+```
 
 ## Step 7: Jenkins Setup in Browser
 Open:
-
+```
 http://<EC2 Public IP>:8080
 Paste admin password
 Install suggested plugins
@@ -117,8 +118,10 @@ To verify your EKS cluster, connect to your EC2 jumphost server and run:
 
 aws eks --region us-east-1 update-kubeconfig --name project-eks
 kubectl get nodes
+```
 
 ## Step 11: Create a Jenkins Pipeline Job (Create Elastic Container Registry (ecr))
+```
 Go to Jenkins Dashboard
 Click New Item
 Name it: ecr-terraform
@@ -153,10 +156,11 @@ loadgenerator
 currencyservice
 shippingservice
 adservice
-
-
+```
+---
 ## Step 12: Create a Jenkins Pipeline Job for Build and Push Docker Images to ECR
 ## 🔐 Step 12.1: Add GitHub PAT to Jenkins Credentials
+```
 Navigate to Jenkins Dashboard → Manage Jenkins → Credentials → (global) → Global credentials (unrestricted).
 Click “Add Credentials”.
 In the form:
@@ -165,10 +169,11 @@ Secret: ghp_HKMTPOddKYE2LfdLGuytsimfedgdssxnnl5d1f73zh
 ID: my-git-pattoken
 Description: git credentials
 4. Click “OK” to save.
+```
 
 ## Step 12.2: Jenkins Pipeline Setup: Build and Push and update Docker Images to ECR
 ## Step 12.2.1: Jenkins Pipeline Setup: emailservice
-
+```
 Go to Jenkins Dashboard
 Click New Item
 Name it: emailservice
@@ -183,9 +188,10 @@ Script Path : jenkinsfiles/emailservice
 Apply
 Save
 6. click Build
-
+```
+---
 ## Step 12.2.2: Jenkins Pipeline Setup: checkoutservice
-
+```
 Go to Jenkins Dashboard
 Click New Item
 Name it: checkoutservice
@@ -200,9 +206,11 @@ Script Path : jenkinsfiles/checkoutservice
 Apply
 Save
 6. click Build
+```
 
+---
 ## Step 12.2.3: Jenkins Pipeline Setup: recommendationservice
-
+```
 Go to Jenkins Dashboard
 Click New Item
 Name it: recommendationservice
@@ -217,9 +225,10 @@ Script Path : jenkinsfiles/recommendationservice
 Apply
 Save
 6. click Build
-
+```
+---
 ## Step 12.2.4: Jenkins Pipeline Setup: frontend
-
+```
 Go to Jenkins Dashboard
 Click New Item
 Name it: frontend
@@ -234,9 +243,10 @@ Script Path : jenkinsfiles/frontend
 Apply
 Save
 6. click Build
-
+```
+---
 ## Step 12.2.5: Jenkins Pipeline Setup: paymentservice
-
+```
 Go to Jenkins Dashboard
 Click New Item
 Name it: paymentservice
@@ -251,9 +261,10 @@ Script Path : jenkinsfiles/paymentservice
 Apply
 Save
 6. click Build
-
+```
+---
 ## Step 12.2.6: Jenkins Pipeline Setup: productcatalogservice
-
+```
 Go to Jenkins Dashboard
 Click New Item
 Name it: productcatalogservice
@@ -268,9 +279,10 @@ Script Path : jenkinsfiles/productcatalogservice
 Apply
 Save
 6. click Build
-
+```
+---
 ## Step 12.2.7: Jenkins Pipeline Setup: cartservice
-
+```
 Go to Jenkins Dashboard
 Click New Item
 Name it: cartservice
@@ -285,8 +297,10 @@ Script Path : jenkinsfiles/cartservice
 Apply
 Save
 6. click Build
-
+```
+---
 ## Step 12.2.8: Jenkins Pipeline Setup: loadgenerator
+```
 Go to Jenkins Dashboard
 Click New Item
 Name it: loadgenerator
@@ -301,9 +315,10 @@ Script Path : jenkinsfiles/loadgenerator
 Apply
 Save
 6. click Build
-
+```
+---
 ## Step 12.2.9: Jenkins Pipeline Setup: currencyservice
-
+```
 Go to Jenkins Dashboard
 Click New Item
 Name it: currencyservice
@@ -318,9 +333,10 @@ Script Path : jenkinsfiles/currencyservice
 Apply
 Save
 6. click Build
-
+```
+---
 ## Step 12.2.10: Jenkins Pipeline Setup: shippingservice
-
+```
 Go to Jenkins Dashboard
 Click New Item
 Name it: shippingservice
@@ -335,9 +351,11 @@ Script Path : jenkinsfiles/shippingservice
 Apply
 Save
 10. click Build
+```
 
+---
 ## Step 12.2.11: Jenkins Pipeline Setup: adservice
-
+```
 Go to Jenkins Dashboard
 Click New Item
 Name it: adservice
@@ -352,8 +370,10 @@ Script Path : jenkinsfiles/adservice
 Apply
 Save
 6. click Build
-
+```
+---
 ## 🖥️ Step 13: Install ArgoCD in Jumphost EC2
+```
 13.1: Create Namespace for ArgoCD
 
 kubectl create namespace argocd
@@ -418,17 +438,19 @@ kubectl get secret argocd-initial-admin-secret -n argocd \
 Login Details:
 Username: admin
 Password: (The output of the above command)
+```
 
 ## Step 15: Deploying with ArgoCD and Configuring Route 53 (Step-by-Step)
 ## Step 15.1: Create Namespace in EKS (from Jumphost EC2)
-
+```
 Run these commands on your jumphost EC2 server:
 
 kubectl create namespace dev
 kubectl get namespaces
-
+```
+---
 ## Step 15.2: Create New Applicatio with ArgoCD
-
+```
 Open the ArgoCD UI in your browser.
 Click + NEW APP.
 Fill in the following:
@@ -441,14 +463,15 @@ Path: kubernetes-files
 Cluster URL: https://kubernetes.default.svc
 Namespace: dev
 4. Click Create.
-
+```
+---
 ## Step 16: Create a Jenkins Pipeline Job for Backend and frondend & Route 53 Setup
 Enable HTTPS for aluru.site with AWS Classic Load Balancer (CLB)
 
 This guide explains how to configure HTTPS for your domain aluru.site using AWS Classic Load Balancer (CLB), Route 53, and AWS Certificate Manager (ACM).
 
 ## ✅ Prerequisites
----
+```
 A working application (e.g., on EC2 or Kubernetes).
 A registered domain: aluru.site
 Domain is managed in Route 53 as a Public Hosted Zone.
@@ -465,10 +488,11 @@ ns-1418.awsdns-59.org
 ns-265.awsdns-73.com
 Your Classic Load Balancer is running and serving HTTP on port 80 or 8080.
 
----
+```
 
 ---
 ## Step 1: Request a Public Certificate in ACMs
+```
 Go to AWS Certificate Manager (ACM).
 Click Request Certificate.
 Choose Request a Public Certificate.
@@ -484,10 +508,11 @@ Become a member
 Click Create DNS record in Route 53.
 ACM will create the _acme-challenge CNAME record.
 8. Wait a few minutes until status becomes Issued.
-
+```
 ---
 
 ## Step 2: Add HTTPS Listener to CLB
+```
 Go to EC2 Console > Load Balancers.
 Select your Classic Load Balancer.
 Go to Listeners tab.
@@ -499,8 +524,10 @@ Instance Port: 80 (or 8080 if your app runs there)
 SSL Certificate: Choose the one for aluru.site
 Security Policy: Select ELBSecurityPolicy-2021–06
 5. Click Save.
+```
 
 ## Step 3: Update Security Group Rules
+```
 Go to your EC2 or Load Balancer Security Group:
 
 Add Inbound Rule:
@@ -509,8 +536,10 @@ Protocol: TCP
 Port: 443
 Source: 0.0.0.0/0
 Ensure existing rules allow HTTP (port 80) or your backend port.
+```
 
 ## Step 4: Configure DNS in Route 53
+```
 In ArgoCD UI, open your project application.
 Click on frontend and copy the hostname (e.g., acfb06fba08834577a50e43724d328e3-1568967602.us-east-1.elb.amazonaws.com).
 Go to Route 53 > Hosted Zones.
@@ -523,6 +552,7 @@ Alias target: Choose Application and Classic Load Balancer
 Region: US East (N. Virginia)
 Alias target value: Paste the frontend load balancer DNS (from step 2)
 6. Click Create Record.
+```
 
 ## Step 5: Test Your Setup
 ```
