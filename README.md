@@ -1,5 +1,5 @@
+![alt text](architecture.webp)
 
-Press enter or click to view image in full size
 
 ###
 Deploying a production-ready microservices e-commerce platform on Amazon EKS (Elastic Kubernetes Service) requires orchestrating multiple services, CI/CD pipelines, observability tools, and infrastructure automation.
