@@ -520,6 +520,7 @@ Alias target value: Paste the frontend load balancer DNS (from step 2)
 6. Click Create Record.
 
 ## Step 5: Test Your Setup
+```
 Using Browser
 Visit:
 
