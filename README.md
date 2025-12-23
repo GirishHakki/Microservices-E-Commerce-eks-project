@@ -1,10 +1,11 @@
 
 Press enter or click to view image in full size
 
+###
 Deploying a production-ready microservices e-commerce platform on Amazon EKS (Elastic Kubernetes Service) requires orchestrating multiple services, CI/CD pipelines, observability tools, and infrastructure automation.
 
 In this blog, we’ll walk through the complete setup from cloning the repository to configuring Jenkins pipelines, deploying with ArgoCD, and exposing the frontend with Route 53 + HTTPS.
-
+###
 ---
 ## Step 1: Clone the GitHub Repository
 
